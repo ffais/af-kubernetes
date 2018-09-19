@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: af-zipkin
+spec:
+    selector:
+        matchLabels:
+            app: zipkin
+            tier: backend
+    replicas: 1
+    template:
+        metadata:
+            labels:
+                app: zipkin
+                tier: backend
+        spec:
+            containers:
+            - name: zipkin
+              image: openzipkin/zipkin
+              ports:
+                  - containerPort: 9411
