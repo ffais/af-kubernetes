@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: af-catalog
+spec:
+    selector:
+        matchLabels:
+            app: catalog
+            tier: frontend
+    replicas: 3
+    template:
+        metadata:
+            labels:
+                app: catalog
+                tier: frontend
+        spec:
+            containers:
+                - name: catalog
+                  image: smartcommunitylab/af-catalog:prom
+                  ports:
+                      - containerPort: 8080
